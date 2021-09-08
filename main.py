@@ -21,9 +21,9 @@ my_subheader = mark_sub.subheader("Little talk in slow french")
 ## Sidebar selection options:
 
 sidebar_title = st.sidebar.title("Little talk in small french")
-my_sidebar = st.sidebar.markdown("by Naguisse")
+my_sidebar = st.sidebar.markdown("by Nagisa")
 
-select_chapter = st.sidebar.number_input("Episode number" , step=1)
+select_chapter = st.sidebar.number_input("Episode number" , min_value=39, max_value=78, step=1)
 select_task = st.sidebar.selectbox('I want to:',['Read transcriptions', 'Explore Vocabulary'])
 
 
@@ -41,8 +41,7 @@ if select_task == 'Read transcriptions':
 	
 	# Options to get transcription: 
 	select = st.sidebar.selectbox('Options', ['Transcription',
-											'Transcription with annotations',
-											'Vocabulary'])
+											'Transcription with annotations'])
 
 	if select == 'Transcription':
 		transcription = st.write(text)
@@ -55,8 +54,13 @@ if select_task == 'Read transcriptions':
 
 if select_task == 'Explore Vocabulary':
 	df_vocabulary = rd.tagging_text(text,"fr_core_news_sm")
-	vocabulary_options = ['VERB','PROPN','PRON','NOUN','ADJ','ADV']
+	vocabulary_options = ['VERB','NOUN','ADJ','ADV','PROPN','PRON']
 	select_vocabulary = st.sidebar.selectbox('Vocabulary', vocabulary_options)
 
+	dataset = df_vocabulary[df_vocabulary['tag'] == select_vocabulary ]
+	st.table(dataset.set_index('text'))
 
-	st.table( df_vocabulary[df_vocabulary['tag'] == select_vocabulary ] )
+### Info messages 
+st.sidebar.info("An experiment using AI to transcribe and analyze\
+	the podcast's content")
+st.sidebar.warning("It's not perfect, the AI is still learning...")
