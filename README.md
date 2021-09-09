@@ -4,7 +4,7 @@ An AI experiments for audio transcription of podcasts and application of NLP.
 
 [Explore the application](https://share.streamlit.io/nedraki/little_talk_slow_french/main/main.py)
 
-The current experiment, contains the transcription from the podcast "*Little talk in slow French*".
+The current experiment, contains the transcription from the podcast [Little talk in slow French](https://open.spotify.com/show/04xgaUm233iT1Th8hWGDyN).
 
 - The podcast is bilingual, dialogues in French and small explanation of words or concept in English. 
 - The transcriptions were previously obtained using Google speech-to-text API. The previous work includes: Creation of buckets in Google cloud, uploading large audio files into it and connection to API.
